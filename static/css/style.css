@@ -1,0 +1,139 @@
+/* ===== CampusConnect Global Styles ===== */
+:root {
+    --cc-primary: #0d6efd;
+    --cc-primary-dark: #0a58ca;
+    --cc-dark: #212529;
+    --cc-bg: #f4f6fb;
+    --cc-radius: 1rem;
+    --cc-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    background-color: var(--cc-bg);
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--cc-dark);
+    min-height: 100vh;
+}
+
+/* ----- Navbar ----- */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.navbar .nav-link {
+    transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #ffffff;
+}
+
+/* ----- Cards ----- */
+.card {
+    border: 0;
+    border-radius: var(--cc-radius);
+    box-shadow: var(--cc-shadow);
+}
+
+/* ----- Forms ----- */
+.form-control,
+.form-select {
+    border-radius: 0.6rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #dee2e6;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--cc-primary);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.18);
+}
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.helptext,
+.form-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+/* Django renders help text as <ul> on password fields */
+form ul {
+    padding-left: 1.1rem;
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+/* ----- Buttons ----- */
+.btn {
+    border-radius: 0.6rem;
+    font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--cc-primary);
+    border-color: var(--cc-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--cc-primary-dark);
+    border-color: var(--cc-primary-dark);
+}
+
+/* ----- Alerts (success message after sign-up) ----- */
+.alert {
+    border: 0;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ----- Profile page ----- */
+.profile-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.avatar-circle {
+    background: linear-gradient(135deg, var(--cc-primary) 0%, var(--cc-primary-dark) 100%);
+    width: 100px;
+    height: 100px;
+    font-size: 40px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+.custom-list-group .list-group-item {
+    background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.25rem;
+}
+
+.custom-list-group .list-group-item:hover {
+    background-color: rgba(13, 110, 253, 0.03);
+}
+
+/* ----- Auth pages (login / signup) ----- */
+.auth-card {
+    max-width: 480px;
+    margin: 2rem auto;
+}
+
+/* ----- Responsive tweaks ----- */
+@media (max-width: 576px) {
+    .card-body {
+        padding: 1.5rem !important;
+    }
+}
