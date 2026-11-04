@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <h2>Welcome {{ user.first_name|default:user.username }}!</h2>
+ <ul>
+    <li>Role: {{ user.role }}</li>
+    <li>Course: {{ user.course|default:"Not specified" }}</li>
+    <li>Members: {{ member_count }}</li>
+    <li>Last Login: {{ user.last_login|date:"M d, Y"}}</li>
+ </ul>
+
+ {% if is_admin %}
+    <a href="{% url 'admin_panel' %}">Go to Admin Panel</a>
+ {% endif %}
+ {% endblock %}
