@@ -33,16 +33,15 @@
 5. **Security**
    - CSRF protection (`{% csrf_token %}`) on every form, including logout.
    - Django's password validators on sign-up.
-   - Duplicate email check on profile edit.
+   - Unique email enforced on sign-up and profile edit.
 
 ---
 
 ## Project Structure
 
 ```
-CSIT327-Gx-Lastname-Firstname-FirstDjango/
+CSIT327-G1-Bajenting-Johnru-FirstDjango/
 ├── manage.py
-├── requirements.txt
 ├── README.md
 ├── .gitignore
 ├── campusconnect/        # project settings and root urls
@@ -61,44 +60,54 @@ CSIT327-Gx-Lastname-Firstname-FirstDjango/
 ## Steps to Run the Project
 
 ### 1. Clone the Repository
+
 ```bash
-git clone <repository-url>
-cd CSIT327-Gx-Lastname-Firstname-FirstDjango
+git clone https://github.com/Enjanurr/CSIT327-G1-Bajenting-Johnru-FirstDjango.git
+cd CSIT327-G1-Bajenting-Johnru-FirstDjango
 ```
 
 ### 2. Create and Activate a Virtual Environment
+
 **Windows (PowerShell):**
+
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
 **macOS / Linux:**
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
 ### 3. Install Dependencies
+
 ```bash
-pip install -r requirements.txt
+pip install django
 ```
 
 ### 4. Apply Database Migrations
+
 The SQLite database is not committed, so this step creates it.
+
 ```bash
 python manage.py migrate
 ```
 
 ### 5. Create a Superuser
+
 ```bash
 python manage.py createsuperuser
 ```
 
 ### 6. Run the Development Server
+
 ```bash
 python manage.py runserver
 ```
+
 Open your browser and visit: **http://127.0.0.1:8000/**
 
 ---
@@ -108,7 +117,7 @@ Open your browser and visit: **http://127.0.0.1:8000/**
 1. Click **Sign Up**, register an account, and confirm the green success alert appears on the login page.
 2. Log in and open **Profile**, then **Edit Profile**, change a field, save, and confirm the update alert.
 3. Log out and try opening `/accounts/profile/` directly. You should be redirected to the login page.
-4. To try the **Admin Panel**: log in at `/admin/` with your superuser, open your user, set **Role** to *Administrator* under *School Profile*, save, then visit the dashboard and click **Admin Panel**.
+4. To try the **Admin Panel**: log in at `/admin/` with your superuser, open your user, set **Role** to _Administrator_ under _School Profile_, save, then visit the dashboard and click **Admin Panel**.
 
 ---
 
