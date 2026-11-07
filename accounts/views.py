@@ -1,10 +1,8 @@
-from django.shortcuts import render, redirect
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm, FeedbackForm, UserProfileUpdateForm
+from .forms import CustomUserCreationForm, UserProfileUpdateForm
 from .models import CustomUser
 
 
@@ -15,23 +13,8 @@ class SignUpView(SuccessMessageMixin, CreateView):
     success_message = "Account created successfully! You can now log in."
 
 
-@login_required
-def profile_view(request):
-    return render(request, 'accounts/profile.html')
-
-
-@login_required
-def feedback_view(request):
-    if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            feedback = form.save(commit=False)
-            feedback.user = request.user
-            feedback.save()
-            return redirect('feedback-success')
-    else:
-        form = FeedbackForm()
-    return render(request, 'accounts/feedback.html', {'form': form})
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/profile.html'
 
 
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

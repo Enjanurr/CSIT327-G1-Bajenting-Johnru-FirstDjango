@@ -8,7 +8,7 @@ class CustomUser(AbstractUser):
         STUDENT = 'STUDENT', 'Student'
         INSTRUCTOR = 'INSTRUCTOR', 'Instructor'
         ADMIN = 'ADMIN', 'Administrator'
-        
+    email = models.EmailField('email address', unique=True)
     role = models.CharField(max_length=10, choices=Role.choices, default=Role.STUDENT) 
     course = models.CharField(max_length=100, blank=True)
 
