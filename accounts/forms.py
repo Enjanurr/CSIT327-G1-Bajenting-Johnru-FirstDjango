@@ -1,7 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
-from .models import CustomUser, Feedback
-
+from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -12,17 +11,12 @@ class CustomUserCreationForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.setdefault('class', 'form-control')
-
-
-class FeedbackForm(forms.ModelForm):
-    class Meta:
-        model = Feedback
-        fields = ['subject', 'message']
-        widgets = {
-            'subject': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter subject'}),
-            'message': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Write your feedback here...'}),
-        }
-
+            
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if CustomUser.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError("This email is already in use.")
+        return email
 
 class UserProfileUpdateForm(forms.ModelForm):
     class Meta:
@@ -42,3 +36,10 @@ class UserProfileUpdateForm(forms.ModelForm):
         if email and qs.exists():
             raise forms.ValidationError("This email is already in use.")
         return email
+    
+class StyledAuthenticationForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.setdefault('class', 'form-control')
+        self.fields['username'].widget.attrs['autofocus'] = True

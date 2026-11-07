@@ -7,6 +7,20 @@
     --cc-radius: 1rem;
     --cc-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
+.card input[type="text"],
+.card input[type="password"],
+.card input[type="email"] {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.6rem;
+}
+.card input:focus {
+    outline: none;
+    border-color: var(--cc-primary);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.18);
+}
 
 body {
     background-color: var(--cc-bg);
